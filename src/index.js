@@ -1,0 +1,1 @@
+import './assets/js/config/config'
