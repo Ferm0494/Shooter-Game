@@ -19,7 +19,8 @@ class SceneB extends Phaser.Scene {
         this.laserGroup;
         this.alienGroup;
         this.score = 0;
-        this.enemies = 1;
+        this.milestone = 5;
+        this.playerVelocity = 600
     }
     preload() {
         this.load.image("alien1", alien);
@@ -30,8 +31,8 @@ class SceneB extends Phaser.Scene {
     }
 
     create() {
-        this.add.image(window.innerWidth/2, window.innerHeight/2 , "space")
-        this.alienGroup = new AlienGroup(this,this.enemies)
+        this.add.image(window.innerWidth / 2, window.innerHeight / 2, "space")
+        this.alienGroup = new AlienGroup(this)
         this.laserGroup = new LaserGroup(this);
         this.player = this.physics.add.image(window.innerWidth / 2, 450, "player");
         this.player.setScale(0.6);
@@ -39,15 +40,18 @@ class SceneB extends Phaser.Scene {
         this.left = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT)
         this.right = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT)
         this.space = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE)
-        this.physics.add.overlap(this.alienGroup,this.laserGroup,this.collisionHandler,null,this)
+        this.physics.add.overlap(this.alienGroup, this.laserGroup, this.collisionHandler, null, this)
+            // this.physics.add.collider(this.alienGroup, this.laserGroup, this.collideHanlder, null, this)
     }
 
-    movePlayer() {  
+
+
+    movePlayer() {
 
         if (this.left.isDown) {
-            this.player.body.setVelocityX(-300)
+            this.player.body.setVelocityX(-this.playerVelocity)
         } else if (this.right.isDown) {
-            this.player.body.setVelocityX(300)
+            this.player.body.setVelocityX(this.playerVelocity)
         } else {
             this.player.body.setVelocityX(0)
         }
@@ -58,25 +62,40 @@ class SceneB extends Phaser.Scene {
         }
     }
 
-    collisionHandler(alien,laser){
-      if(this.player.body.onFloor()){
-        this.score+=1;
-        laser.explote();
-        alien.kill();
-         
-      }
+    collisionHandler(alien, laser) {
+
+        if (this.player.body.onFloor() && alien.visible) {
+            console.log("Collision on Alien!", alien.visible)
+            this.score += 1;
+            laser.explote();
+            alien.kill();
+
+        }
     }
 
-    update(time,delta) {
-    let num = Phaser.Math.Between(0,this.sys.canvas.width);
-    
-    
-      if(this.player.body.onFloor()){ 
-          this.alienGroup.dropAlien(num,0,0.2);
-          
-      }
-        this.checkShoot();
-        this.movePlayer();
+    changeLevel() {
+        if (this.score > this.milestone) {
+            console.log("Change level!")
+            this.playerVelocity += 100
+            this.milestone += 25;
+            this.enemies += 1;
+            this.alienGroup.increaseEnemies();
+        }
+    }
+
+    update(time, delta) {
+        let num = Phaser.Math.Between(0, this.sys.canvas.width);
+
+
+        if (this.player.body.onFloor()) {
+            this.alienGroup.dropAlien(num, 0, 0.4);
+            this.checkShoot();
+            this.movePlayer();
+            this.changeLevel()
+
+        }
+
+
 
     }
 

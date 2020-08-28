@@ -17,7 +17,8 @@ class Laser extends Phaser.Physics.Arcade.Sprite {
         }
     }
 
-    explote(){
+    explote() {
+        this.setActive(false);
         this.setVisible(false);
     }
 }
