@@ -18,8 +18,10 @@ class Laser extends Phaser.Physics.Arcade.Sprite {
     }
 
     explote() {
+
         this.setActive(false);
         this.setVisible(false);
+        // console.log("Calling laser2!", this.visible);
     }
 }
 

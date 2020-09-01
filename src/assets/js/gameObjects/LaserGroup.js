@@ -9,7 +9,6 @@ class LaserGroup extends Phaser.Physics.Arcade.Group {
             active: false,
             visible: false,
             key: 'laser'
-
         })
     }
 
@@ -21,4 +20,4 @@ class LaserGroup extends Phaser.Physics.Arcade.Group {
     }
 }
 
-export default LaserGroup;  
+export default LaserGroup;
