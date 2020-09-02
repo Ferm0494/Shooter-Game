@@ -22,14 +22,8 @@ class Alien extends Phaser.Physics.Arcade.Sprite {
     }
 
     kill() {
-
-
-        this.anims.play("explode").on("animationcomplete", () => {
-            console.log("end Animation")
-            this.anims.remove("explode")
             this.setActive(false)
             this.setVisible(false)
-        })
     }
 
 

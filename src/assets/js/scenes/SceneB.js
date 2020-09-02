@@ -6,7 +6,7 @@ import explosion from '../../img/explosion.png'
 import Phaser from 'phaser'
 import LaserGroup from '../gameObjects/LaserGroup'
 import AlienGroup from '../gameObjects/AlienGroup'
-import Alien from '../gameObjects/Alien'
+import particleConfig from '../config/particleConfig'
 
 
 
@@ -23,13 +23,10 @@ class SceneB extends Phaser.Scene {
         this.score = 0;
         this.milestone = 5;
         this.playerVelocity = 600
-
+    
     }
     preload() {
-        this.load.spritesheet("explosion", explosion, {
-            frameWidth: 16,
-            frameHeight: 16
-        });
+        this.load.image("explosion",explosion);
         this.load.image("alien1", alien)
         this.load.image("space", space);
         this.load.image("laser", laser)
@@ -38,13 +35,7 @@ class SceneB extends Phaser.Scene {
     }
 
     create() {
-        this.anims.create({
-            key: "explode",
-            frames: this.anims.generateFrameNumbers("explosion"),
-            frameRate: 20,
-            repeat: 0,
-            hideOnComplete: true
-        })
+      
         this.add.image(window.innerWidth / 2, window.innerHeight / 2, "space")
         this.alienGroup = new AlienGroup(this)
         this.laserGroup = new LaserGroup(this);
@@ -55,6 +46,12 @@ class SceneB extends Phaser.Scene {
         this.right = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT)
         this.space = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE)
         this.physics.add.collider(this.alienGroup, this.laserGroup, this.collisionHandler, null, this)
+        this.createParticles();
+    }
+
+    createParticles(){
+        this.particles = this.add.particles("explosion");
+        this.emitter = this.particles.createEmitter(particleConfig)
     }
 
 
@@ -79,14 +76,12 @@ class SceneB extends Phaser.Scene {
 
         if (this.player.body.onFloor() && alien.visible) {
 
-            console.log("Collision on Alien!", alien instanceof AlienGroup)
+            
             this.score += 1;
             laser.explote();
             alien.kill();
-
-
-
-
+            this.particles.emitParticleAt(alien.x,alien.y,50)
+         this.createParticles();
         }
     }
 

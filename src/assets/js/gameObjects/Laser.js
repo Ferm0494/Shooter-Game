@@ -6,7 +6,7 @@ class Laser extends Phaser.Physics.Arcade.Sprite {
         this.body.reset(x, y);
         this.setActive(true);
         this.setVisible(true);
-        this.setVelocityY(-900)
+        this.setVelocityY(-1200)
     }
 
     preUpdate(time, delta) {
