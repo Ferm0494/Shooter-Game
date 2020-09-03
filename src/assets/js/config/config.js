@@ -3,7 +3,7 @@ import SceneB from '../scenes/SceneB'
 var config = {
     type: Phaser.AUTO,
     width: window.innerWidth,
-    height: '99%',
+    height: window.innerHeight,
     physics: {
         default: "arcade",
         arcade: {

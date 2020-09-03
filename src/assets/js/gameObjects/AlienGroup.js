@@ -17,7 +17,7 @@ class AlienGroup extends Phaser.Physics.Arcade.Group {
 
     }
 
-    dropAlien(x, y, scale, velocittY) {
+    dropAlien(x, y, scale) {
         const alien = this.getFirstDead(false);
         if (alien) {
             alien.setScale(scale)
