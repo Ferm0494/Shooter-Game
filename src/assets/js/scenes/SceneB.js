@@ -35,6 +35,7 @@ class SceneB extends Phaser.Scene {
         this.load.image("space", space);
         this.load.image("laser", laser)
         this.load.image("player", spaceShip)
+        this.load.image("life",life)
 
     }
 
@@ -110,27 +111,32 @@ class SceneB extends Phaser.Scene {
 
     changeLevel() {
         if (this.score > this.milestone) {
-            console.log("Change level!")
             this.playerVelocity += 100
             this.milestone += 25;
             this.alienGroup.increaseEnemies();
         }
     }
 
+    checkCollisionAlien(time){
+     this.alienGroup.getChildren().forEach(alien=>{
+      if(alien.body.touching.down){
+          console.log("Collided!")
+         this.player.removeLife()
+      }
+     })
+    }
+
     update(time, delta) {
         let num = Phaser.Math.Between(0, this.sys.canvas.width);
-        this.background.tilePositionY -= 0.5;
+        this.background.tilePositionY -= 1;
 
         if (this.player.body.onFloor()) {
             this.alienGroup.dropAlien(num, 0, 0.4);
             this.checkShoot();
             this.movePlayer();
             this.changeLevel();
-
-
+            this.checkCollisionAlien(time)
         }
-
-
 
     }
 
