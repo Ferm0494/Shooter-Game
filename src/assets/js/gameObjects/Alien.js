@@ -2,8 +2,11 @@ class Alien extends Phaser.Physics.Arcade.Sprite {
     constructor(scene, x, y) {
         super(scene, x, y, 'alien1');
         this.velocity = 25
+    
     }
 
+
+    
     drop(x, y) {
         this.body.reset(x, y)
         this.setActive(true);
@@ -13,9 +16,11 @@ class Alien extends Phaser.Physics.Arcade.Sprite {
 
     preUpdate(time, delta) {
         super.preUpdate(time, delta)
+        
         if (this.y >= window.innerHeight) {
             this.setActive(false);
             this.setVisible(false);
+            this.setData("passed",false);
             this.velocity += 1
             this.setVelocityY(this.setVelocityY);
         }
@@ -25,6 +30,7 @@ class Alien extends Phaser.Physics.Arcade.Sprite {
             this.setActive(false)
             this.setVisible(false)
     }
+
 
 
 }

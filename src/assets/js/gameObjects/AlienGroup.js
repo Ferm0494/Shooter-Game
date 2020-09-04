@@ -2,8 +2,9 @@ import Alien from './Alien'
 class AlienGroup extends Phaser.Physics.Arcade.Group {
     constructor(scene) {
         super(scene.physics.world, scene)
-
+        // this.scene.add.existing(this)
         this.increaseEnemies()
+
     }
 
     increaseEnemies() {
@@ -22,7 +23,7 @@ class AlienGroup extends Phaser.Physics.Arcade.Group {
         if (alien) {
             alien.setScale(scale)
             alien.drop(x, y)
-            return this;
+            return alien;
         }
     }
 }

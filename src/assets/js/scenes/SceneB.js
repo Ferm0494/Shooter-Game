@@ -20,6 +20,7 @@ class SceneB extends Phaser.Scene {
             key: "SceneB",
             active: true
         })
+        this.test = 0;
         this.player;
         this.laserGroup;
         this.alienGroup;
@@ -117,13 +118,14 @@ class SceneB extends Phaser.Scene {
         }
     }
 
-    checkCollisionAlien(time){
-     this.alienGroup.getChildren().forEach(alien=>{
-      if(alien.body.touching.down){
-          console.log("Collided!")
-         this.player.removeLife()
-      }
-     })
+    checkCollisionAlien(time){ 
+        this.alienGroup.getChildren().forEach(alien=>{
+            if(alien.body.y + alien.body.height> this.sys.canvas.height && !alien.getData("passed")){
+                alien.setData("passed",true)
+                this.player.removeLife()
+            }
+        })
+        
     }
 
     update(time, delta) {
@@ -131,7 +133,7 @@ class SceneB extends Phaser.Scene {
         this.background.tilePositionY -= 1;
 
         if (this.player.body.onFloor()) {
-            this.alienGroup.dropAlien(num, 0, 0.4);
+            this.alienGroup.dropAlien(num, 0, 0.4)
             this.checkShoot();
             this.movePlayer();
             this.changeLevel();
