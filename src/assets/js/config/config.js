@@ -1,5 +1,6 @@
 import Phaser from "phaser";
 import SceneB from '../scenes/SceneB'
+import SceneA from '../scenes/SceneA'
 var config = {
     type: Phaser.AUTO,
     width: window.innerWidth,
@@ -13,7 +14,7 @@ var config = {
         }
     },
 
-    scene: [SceneB]
+    scene: [SceneA,SceneB]
 
 }
 

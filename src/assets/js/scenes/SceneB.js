@@ -10,49 +10,73 @@ import LaserGroup from '../gameObjects/LaserGroup'
 import AlienGroup from '../gameObjects/AlienGroup'
 import particleConfig from '../config/particleConfig'
 import Player from '../gameObjects/Player'
-
-
+import Utils from '../config/Utils'
 
 
 class SceneB extends Phaser.Scene {
     constructor() {
         super({
             key: "SceneB",
-            active: true
+            active: false,
         })
-        this.test = 0;
-        this.player;
-        this.laserGroup;
-        this.alienGroup;
+        // INIT VALUES
+        this.util = Utils(this)
         this.score = 0;
-        this.scoreText;
         this.milestone = 5;
         this.playerVelocity = 600
     
     }
+
+    init(data){
+       
+       this.data = data; 
+    }
+
     preload() {
         this.load.image("explosion",explosion);
         this.load.image("alien1", alien)
-        this.load.image("space", space);
         this.load.image("laser", laser)
-        this.load.image("player", spaceShip)
         this.load.image("life",life)
 
     }
 
-
     create() {
-        this.scaleBackground()
+        this.finalScore = this.add.zone()
+        this.background=this.util.scaleBackground()
         this.setScore()
+        this.finalScore = this.componentScore()
         this.alienGroup = new AlienGroup(this)
         this.laserGroup = new LaserGroup(this);
-        this.player = this.physics.add.existing(new Player(this,window.innerWidth / 2,450))
+        this.player = this.physics.add.existing(new Player(this,window.innerWidth / 2,450,this.data.name))
         this.player.setScale(0.6);
         this.player.setCollideWorldBounds(true)
         this.physics.add.collider(this.alienGroup, this.laserGroup, this.collisionHandler, null, this)
         this.createActions()
         this.createParticles();
     }
+
+    componentScore(){
+        const {centerX,centerY} = this.util.centerScene()
+        
+        let score = this.add.text(0,0,`Your Score was : ${this.score}`,this.util.style)
+        let again = this.add.text(75,75,`Play Again?`,this.util.style)
+        let menu = this.add.text(125,125,"Menu",this.util.style)
+    
+        again.setInteractive().on('pointerdown',()=>{
+            console.log("Lets play!")
+        })
+
+        menu.setInteractive().on('pointerdown',()=>{
+            console.log("Go to menu!")
+        })
+
+        let container = this.add.container(centerX-150,centerY,[score,again,menu])
+        container.setVisible(false)
+        return container;
+    }
+
+
+    
 
     setScore(){
         this.scoreText = this.add.text(16,16,`SCORE: ${this.score}`,{fontSize:'32px',fill:'#ffff'})
@@ -65,16 +89,7 @@ class SceneB extends Phaser.Scene {
         this.space = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE)
     }
 
-    scaleBackground(){
-         this.background = this.add.tileSprite(0, 0,window.innerWidth,window.innerHeight,"space", "player");
-        this.background.setOrigin(0);
-        let scaleX = this.cameras.main.width / this.background.width
-        let scaleY = this.cameras.main.height / this.background.height
-        let scale = Math.max(scaleX, scaleY)
-        this.background.setScale(scale).setScrollFactor(0)
-       
-    
-    }
+   
 
     createParticles(){
         this.particles = this.add.particles("explosion");
@@ -106,7 +121,7 @@ class SceneB extends Phaser.Scene {
             laser.explote();
             alien.kill();
             this.particles.emitParticleAt(alien.x,alien.y,50)
-         this.createParticles();
+             this.createParticles();
         }
     }
 
@@ -122,15 +137,25 @@ class SceneB extends Phaser.Scene {
         this.alienGroup.getChildren().forEach(alien=>{
             if(alien.body.y + alien.body.height> this.sys.canvas.height && !alien.getData("passed")){
                 alien.setData("passed",true)
+                if(this.player.alive()){
+
                 this.player.removeLife()
+
+                }else{
+                    this.finalScore.list[0].setText(`${this.data.name} scored :${this.score}`)
+                    this.physics.pause()
+                    this.finalScore.setVisible(true)
+                }
             }
         })
         
     }
 
     update(time, delta) {
-        let num = Phaser.Math.Between(0, this.sys.canvas.width);
-        this.background.tilePositionY -= 1;
+        let num = Phaser.Math.Between(50 , this.sys.canvas.width -50);
+        if(this.player.alive()){
+            this.background.tilePositionY -= 1;
+        }
 
         if (this.player.body.onFloor()) {
             this.alienGroup.dropAlien(num, 0, 0.4)

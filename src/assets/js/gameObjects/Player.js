@@ -1,8 +1,9 @@
 import Life from './Life'
 
 class Player extends Phaser.Physics.Arcade.Sprite{
-    constructor(scene,x,y){
+    constructor(scene,x,y,name){
         super(scene,x,y,"player")
+        this.setData("name",name);
         this.lifeCount = 3;
         this.scene.add.existing(this)
         this.lifes  = []
@@ -15,9 +16,11 @@ class Player extends Phaser.Physics.Arcade.Sprite{
 
     removeLife(){
         this.lifes[this.lifeCount-1].removeLife()
-        this.lifeCount -=1;
-        
-        
+        this.lifeCount -=1; 
+    }
+
+    alive(){
+       return this.lifeCount === 0 ?  false :  true
     }
 }
 
