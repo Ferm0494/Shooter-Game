@@ -20,7 +20,7 @@ class Player extends Phaser.Physics.Arcade.Sprite{
     }
 
     alive(){
-       return this.lifeCount === 0 ?  false :  true
+       return this.lifeCount < 0 ?  false :  true
     }
 }
 

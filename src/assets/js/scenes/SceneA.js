@@ -37,6 +37,9 @@ class SceneA extends Phaser.Scene{
             this.scene.start("SceneB",{name: this.name})
         })
         let scores = this.add.text(75,125,"Highscores",this.utils.style)
+        scores.setInteractive().on('pointerdown',()=>{
+            this.scene.start("SceneC")
+        })
         let container = this.add.container(centerX-150,centerY,[intro,play,scores])
         return container;
 

@@ -29,7 +29,7 @@ class SceneB extends Phaser.Scene {
 
     init(data){
        
-       this.data = data; 
+       this.name = localStorage.getItem("user"); 
     }
 
     preload() {
@@ -47,7 +47,7 @@ class SceneB extends Phaser.Scene {
         this.finalScore = this.componentScore()
         this.alienGroup = new AlienGroup(this)
         this.laserGroup = new LaserGroup(this);
-        this.player = this.physics.add.existing(new Player(this,window.innerWidth / 2,450,this.data.name))
+        this.player = this.physics.add.existing(new Player(this,window.innerWidth / 2,450,this.name))
         this.player.setScale(0.6);
         this.player.setCollideWorldBounds(true)
         this.physics.add.collider(this.alienGroup, this.laserGroup, this.collisionHandler, null, this)
@@ -63,11 +63,11 @@ class SceneB extends Phaser.Scene {
         let menu = this.add.text(125,125,"Menu",this.util.style)
     
         again.setInteractive().on('pointerdown',()=>{
-            console.log("Lets play!")
+           this.scene.start("SceneB")
         })
 
         menu.setInteractive().on('pointerdown',()=>{
-            console.log("Go to menu!")
+            this.scene.start("SceneA");
         })
 
         let container = this.add.container(centerX-150,centerY,[score,again,menu])

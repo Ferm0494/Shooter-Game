@@ -1,3 +1,4 @@
+import _ from 'lodash'
 const Utils = (scene)=>{
     const style = {fontSize:'32px',fill: '#ffff'}
     const centerScene= ()=>{
@@ -21,11 +22,35 @@ const Utils = (scene)=>{
       
     
     }
+
+    const verifyHighscore=async(userScore)=>{
+            let result = false;
+            let getScores = await getHighScores();
+            getScores.push(userScore)
+            let sortedScores  = getScores.sort((a,b)=> a.score - b.score);
+            sortedScores.forEach(score=>{
+                if(_.isEqual(userScore,score)){
+                    result = true
+                }
+            })
+
+            return result;
+
+
+    }
     
+    const getHighScores=async()=>{
+        let response  = await fetch(`https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/BCP3BG1LkxkQV778JD1o/scores`)
+        let json = await response.json();
+        return json;
+       
+    }
     return{
         style,
         centerScene,
-        scaleBackground
+        scaleBackground,
+        getHighScores,
+        verifyHighscore
         
     }
     }
