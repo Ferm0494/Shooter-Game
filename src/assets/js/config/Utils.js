@@ -24,12 +24,12 @@ const Utils = (scene) => {
 
   const verifyHighScore = (userScore, scores) => {
     scores.push(userScore);
+    const sortedScores = scores.sort((a, b) => a.score - b.score);
     if (scores.length < 10) {
-      return scores;
+      return sortedScores
     }
 
     let result = false;
-    const sortedScores = scores.sort((a, b) => a.score - b.score);
     sortedScores.forEach(score => {
       if (_.isEqual(userScore, score)) {
         result = true;

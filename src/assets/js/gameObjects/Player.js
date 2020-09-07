@@ -18,6 +18,7 @@ class Player extends Phaser.Physics.Arcade.Sprite {
   removeLife() {
     this.lifes[this.lifeCount - 1].removeLife();
     this.lifeCount -= 1;
+    return this.lifeCount
   }
 
   alive() {
