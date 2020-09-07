@@ -1,4 +1,6 @@
 import _ from 'lodash'
+
+const API = `https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/BCP3BG1LkxkQV778JD1o/scores`
 const Utils = (scene)=>{
     const style = {fontSize:'32px',fill: '#ffff'}
     const centerScene= ()=>{
@@ -23,24 +25,40 @@ const Utils = (scene)=>{
     
     }
 
-    const verifyHighscore=async(userScore)=>{
-            let result = false;
-            let getScores = await getHighScores();
-            getScores.push(userScore)
-            let sortedScores  = getScores.sort((a,b)=> a.score - b.score);
-            sortedScores.forEach(score=>{
-                if(_.isEqual(userScore,score)){
-                    result = true
-                }
+    const verifyHighScore=(userScore,scores)=>{
+        scores.push(userScore);
+        console.log(scores)
+        if(scores.length < 10){
+            return scores
+        }
+       
+        let result = false;    
+        let sortedScores  = scores.sort((a,b)=> a.score - b.score);
+        sortedScores.forEach(score=>{
+        if(_.isEqual(userScore,score)){
+                result = true
+            }
             })
+                    
+        if(result){
+                return sortedScores
+        }else{
+                return result;
+        }
+    }
 
-            return result;
-
-
+    const insertHighScoreToDB=async(score)=>{
+        let response  = await fetch(API,{
+            method:'POST',
+            body: JSON.stringify(score),
+            headers:{'Content-Type': 'application/json'}
+        })
+        let json = await response.json();
+        return json;
     }
     
     const getHighScores=async()=>{
-        let response  = await fetch(`https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/BCP3BG1LkxkQV778JD1o/scores`)
+        let response  = await fetch(API)
         let json = await response.json();
         return json;
        
@@ -50,7 +68,8 @@ const Utils = (scene)=>{
         centerScene,
         scaleBackground,
         getHighScores,
-        verifyHighscore
+        verifyHighScore,
+        insertHighScoreToDB
         
     }
     }

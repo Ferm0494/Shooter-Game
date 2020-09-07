@@ -1,8 +1,6 @@
-import space from '../../img/space3.png'
-import spaceShip from '../../img/player.PNG'
+
 import alien from '../../img/alien1.png'
 import laser from '../../img/beam2.png'
-import coin from '../../img/gold.png'
 import life from '../../img/life.png'
 import explosion from '../../img/explosion.png'
 import Phaser from 'phaser'
@@ -55,10 +53,12 @@ class SceneB extends Phaser.Scene {
         this.createParticles();
     }
 
-    componentScore(){
+    
+
+     componentScore(){
         const {centerX,centerY} = this.util.centerScene()
-        
-        let score = this.add.text(0,0,`Your Score was : ${this.score}`,this.util.style)
+       
+        let score = this.add.text(0,0,`${this.name} scored : ${this.score}`,this.util.style)
         let again = this.add.text(75,75,`Play Again?`,this.util.style)
         let menu = this.add.text(125,125,"Menu",this.util.style)
     
@@ -142,9 +142,26 @@ class SceneB extends Phaser.Scene {
                 this.player.removeLife()
 
                 }else{
-                    this.finalScore.list[0].setText(`${this.data.name} scored :${this.score}`)
-                    this.physics.pause()
+                    let scored = {
+                        user: this.name,
+                        score: this.score
+                    }
+                     this.util.getHighScores().then(({result})=>{
+                        let res = this.util.verifyHighScore(scored,result);
+                        if(!res){
+                            this.finalScore.list[0].setText(`${this.name} scored :${this.score}`)
+                       }else{
+                            this.finalScore.list[0].setText(`${this.name} NEW RECORD :${this.score}`) 
+                            this.util.insertHighScoreToDB(scored).then(x=>{
+                                console.log(x);
+
+                            })
+                       } 
+                       this.physics.pause()
                     this.finalScore.setVisible(true)
+                    })
+                  
+                    
                 }
             }
         })
