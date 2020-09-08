@@ -19,7 +19,7 @@ class SceneC extends Phaser.Scene {
   create() {
     this.background = this.utils.scaleBackground();
     this.highScore().then(component => {
-      let deltaY = this.centerY;
+      let deltaY = 0;
       component.forEach(score => {
         deltaY += 30;
         this.add.text(this.centerX - 150, deltaY, score, this.utils.style);
@@ -28,12 +28,12 @@ class SceneC extends Phaser.Scene {
   }
 
   async highScore() {
-    let index = 0;
+    let index = 0   ;
     const { result } = await this.utils.getHighScores();
     const sortedScores = result.sort((a, b) => a.score - b.score);
     const scores = sortedScores.reverse().map(score => {
       index += 1;
-      return `${index}.   ${score.user}    ${score.score} `;
+      return `${index}.   ${score.user}    ${parseFloat(score.score)} `;
     });
     const intro = 'Top 10 scores';
     const component = [intro];
