@@ -1,7 +1,7 @@
 import Utils from '../src/assets/js/config/Utils'
 import 'regenerator-runtime/runtime'
 import {getHighScores} from './mocks'
-const URL = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/BCP3BG1LkxkQV778JD1o/scores'
+const URL = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/rPwncouIKuiWW8YeWuND/scores'
 let result = [{user: "Fernando",score:40},{user: "Fernando2",score:50},{user: "Fernando3",score:10},{user: "Fernando4",score:5},{user:"Maria",score:"200"}]
 const util = Utils();
 

@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-const API = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/WtHG2pepQQDgzDAzOJLi/scores';
+const API = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/rPwncouIKuiWW8YeWuND/scores';
 const Utils = (scene) => {
   const style = { fontSize: '32px', fill: '#ffff' };
   const centerScene = () => {
