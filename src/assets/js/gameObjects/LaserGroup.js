@@ -13,10 +13,10 @@ class LaserGroup extends Phaser.Physics.Arcade.Group {
     });
   }
 
-  fireLaser(x, y) {
+  fireLaser(x, y,scale) {
     const laser = this.getFirstDead(false);
     if (laser) {
-      laser.fire(x, y);
+      laser.fire(x, y,scale);
     }
   }
 }

@@ -29,12 +29,12 @@ class SceneA extends Phaser.Scene {
 
   createMenu() {
     const { centerX, centerY } = this.utils.centerScene();
-    const intro = this.add.text(0, 0, `Welcome : ${this.name} `, this.utils.style);
-    const play = this.add.text(75, 75, 'Start Game', this.utils.style);
+    const intro = this.add.text(75,0, `Welcome : ${this.name} `, this.utils.style);
+    const play = this.add.text(100, 100, 'Start Game', this.utils.style);
     play.setInteractive().on('pointerdown', () => {
       this.scene.start('SceneB');
     });
-    const scores = this.add.text(75, 125, 'Highscores', this.utils.style);
+    const scores = this.add.text(100, 150, 'Highscores', this.utils.style);
     scores.setInteractive().on('pointerdown', () => {
       this.scene.start('SceneC');
     });
