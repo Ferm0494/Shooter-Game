@@ -1,9 +1,9 @@
 # Shooter Arcade Alien Game
 
-In this project we used `Phaser3` to make the game on a canvas with **ES6**:
+
 ![Demo Doccou alpha](https://j.gifs.com/K1DQ3M.gif)
 
-
+In this project we used `Phaser3` to make the game on a canvas with **ES6**:
 ## Built with
 
 - Javascript(ES6)
