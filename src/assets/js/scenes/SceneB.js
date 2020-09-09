@@ -19,7 +19,6 @@ class SceneB extends Phaser.Scene {
       key: 'SceneB',
       active: false,
     });
-    // INIT VALUES
     this.util = Utils(this);
     this.score = 0;
     this.milestone = 5;
@@ -115,7 +114,6 @@ class SceneB extends Phaser.Scene {
     if (!coin.getData('passedCoin')) {
       coin.setData('passedCoin', true);
       this.score += 20;
-      this.changeLevel(coin.getData('passedCoin'));
       this.scoreText.setText(`SCORE: ${this.score}`);
       coin.popUp();
       this.createCoins();
