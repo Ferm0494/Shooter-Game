@@ -1,7 +1,7 @@
 
 import Phaser from 'phaser';
 import space from '../../img/space3.png';
-import player from '../../img/player.png';
+import player from '../../img/gamer.png';
 import Utils from '../config/Utils';
 
 class SceneA extends Phaser.Scene {
