@@ -28,7 +28,7 @@ class SceneC extends Phaser.Scene {
   }
 
   async highScore() {
-    let index = 0   ;
+    let index = 0;
     const { result } = await this.utils.getHighScores();
     const sortedScores = result.sort((a, b) => a.score - b.score);
     const scores = sortedScores.reverse().map(score => {

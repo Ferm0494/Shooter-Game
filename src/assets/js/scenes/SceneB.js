@@ -3,7 +3,7 @@ import Phaser from 'phaser';
 import alien from '../../img/alien1.png';
 import laser from '../../img/beam2.png';
 import life from '../../img/life.png';
-import coin from '../../img/gold.png'
+import coin from '../../img/gold.png';
 import explosion from '../../img/explosion.png';
 import LaserGroup from '../gameObjects/LaserGroup';
 import AlienGroup from '../gameObjects/AlienGroup';
@@ -11,7 +11,6 @@ import particleConfig from '../config/particleConfig';
 import Player from '../gameObjects/Player';
 import Utils from '../config/Utils';
 import CoinGroup from '../gameObjects/CoinGroup';
-import coinGroup from '../gameObjects/CoinGroup'
 
 
 class SceneB extends Phaser.Scene {
@@ -32,7 +31,7 @@ class SceneB extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image("coin",coin);
+    this.load.image('coin', coin);
     this.load.image('explosion', explosion);
     this.load.image('alien1', alien);
     this.load.image('laser', laser);
@@ -54,10 +53,7 @@ class SceneB extends Phaser.Scene {
     this.createActions();
     this.createParticles();
     this.createCoins();
-
   }
-
-  
 
 
   componentScore() {
@@ -115,25 +111,29 @@ class SceneB extends Phaser.Scene {
     }
   }
 
-  collisionHandlerCoins(player,coin){
-    if(!coin.getData("passedCoin")){
-        coin.setData("passedCoin",true)
-        this.score +=20
-        this.changeLevel(coin.getData("passedCoin"));
-        this.scoreText.setText(`SCORE: ${this.score}`)
-        coin.popUp()
-        this.createCoins();
-
+  collisionHandlerCoins(player, coin) {
+    if (!coin.getData('passedCoin')) {
+      coin.setData('passedCoin', true);
+      this.score += 20;
+      this.changeLevel(coin.getData('passedCoin'));
+      this.scoreText.setText(`SCORE: ${this.score}`);
+      coin.popUp();
+      this.createCoins();
     }
-}
+  }
 
-createCoins(){
+  createCoins() {
     this.coinGroup = new CoinGroup(this);
-        this.physics.add.collider(this.coinGroup, this.player,this.collisionHandlerCoins,null,this)
-        this.time.addEvent({delay:Phaser.Math.Between(5000,10000),callback:()=>{
-            this.coinGroup.dropCoin(Phaser.Math.Between(50,this.sys.canvas.width-50),0,2)
-        },callbackScope:this,repeat:1})
-}
+    this.physics.add.collider(this.coinGroup, this.player, this.collisionHandlerCoins, null, this);
+    this.time.addEvent({
+      delay: Phaser.Math.Between(5000, 10000),
+      callback: () => {
+        this.coinGroup.dropCoin(Phaser.Math.Between(50, this.sys.canvas.width - 50), 0, 2);
+      },
+      callbackScope: this,
+      repeat: 1,
+    });
+  }
 
   collisionHandler(alien, laser) {
     if (this.player.body.onFloor() && alien.visible) {
@@ -146,7 +146,7 @@ createCoins(){
     }
   }
 
-  changeLevel(band=false) {
+  changeLevel() {
     if (this.score > this.milestone) {
       this.playerVelocity += 100;
       this.milestone = this.score + 50;

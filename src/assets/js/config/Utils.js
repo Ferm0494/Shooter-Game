@@ -23,19 +23,19 @@ const Utils = (scene) => {
   };
 
   const verifyHighScore = (userScore, scores) => {
+    let index = 0;
     scores.push(userScore);
-    const sortedScores = scores.sort((a, b) => a.score - b.score);
-    if (scores.length < 10) {
-      return sortedScores
+    const sortedScores = scores.sort((a, b) => a.score - b.score).reverse();
+    if (scores.length <= 10) {
+      return sortedScores;
     }
-
     let result = false;
     sortedScores.forEach(score => {
-      if (_.isEqual(userScore, score)) {
+      if (_.isEqual(userScore, score) && index <= 10) {
         result = true;
       }
+      index += 1;
     });
-
     if (result) {
       return sortedScores;
     }
