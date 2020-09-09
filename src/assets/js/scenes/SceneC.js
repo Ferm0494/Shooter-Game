@@ -34,8 +34,8 @@ class SceneC extends Phaser.Scene {
 
   async highScore() {
     const { result } = await this.utils.getHighScores();
-    const sortedScores = result.sort((a, b) => a.score - b.score);
-    const scores = sortedScores.reverse().map((score, index) => `${index}.   ${score.user}    ${parseFloat(score.score)} `);
+    const sortedScores = result.sort((a, b) => a.score - b.score).splice(0,10);
+    const scores = sortedScores.reverse().map((score, index) => `${index+1}.   ${score.user}    ${parseFloat(score.score)} `);
     const intro = 'Top 10 scores';
     const intro2 = 'Play now!';
     const component = [intro, intro2];
@@ -44,11 +44,7 @@ class SceneC extends Phaser.Scene {
   }
 
   update() {
-    // if(this.component !== undefined && !this.rendered){
-
-    //     this.rendered = true
-    // }
-
+ 
     this.background.tilePositionY -= 0.5;
   }
 }
