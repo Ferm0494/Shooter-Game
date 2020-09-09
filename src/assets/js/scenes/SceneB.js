@@ -106,7 +106,7 @@ class SceneB extends Phaser.Scene {
 
   checkShoot() {
     if (this.space.isDown) {
-      this.laserGroup.fireLaser(this.player.x, this.player.y - 20,this.util.setScale(0.2));
+      this.laserGroup.fireLaser(this.player.x, this.player.y - 20, this.util.setScale(0.2));
     }
   }
 
@@ -126,7 +126,11 @@ class SceneB extends Phaser.Scene {
     this.time.addEvent({
       delay: Phaser.Math.Between(5000, 10000),
       callback: () => {
-        this.coinGroup.dropCoin(Phaser.Math.Between(50, this.sys.canvas.width - 50), 0, this.util.setScale(2));
+        this.coinGroup.dropCoin(
+          Phaser.Math.Between(50,
+            this.sys.canvas.width - 50), 0,
+          this.util.setScale(2),
+        );
       },
       callbackScope: this,
       repeat: 1,

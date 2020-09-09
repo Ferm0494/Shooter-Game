@@ -2,7 +2,6 @@ import _ from 'lodash';
 
 const API = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/rPwncouIKuiWW8YeWuND/scores';
 const Utils = (scene) => {
- 
   const centerScene = () => {
     const centerX = scene.cameras.main.worldView.x + scene.cameras.main.width / 2;
     const centerY = scene.cameras.main.worldView.y + scene.cameras.main.height / 2;
@@ -12,12 +11,12 @@ const Utils = (scene) => {
     };
   };
 
-  const setScale=(obj)=>{
-    if(window.innerWidth < 980){
-      obj /=2
+  const setScale = (obj) => {
+    if (window.innerWidth < 980) {
+      obj /= 2;
     }
-    return obj
-  }
+    return obj;
+  };
 
   const scaleBackground = () => {
     scene.background = scene.add.tileSprite(0, 0, window.innerWidth, window.innerHeight, 'space', 'player');
@@ -30,18 +29,16 @@ const Utils = (scene) => {
   };
 
   const verifyHighScore = (userScore, scores) => {
-    
     scores.push(userScore);
     const sortedScores = scores.sort((a, b) => a.score - b.score).reverse();
     if (scores.length <= 10) {
       return sortedScores;
     }
     let result = false;
-    sortedScores.forEach((score,index) => {
+    sortedScores.forEach((score, index) => {
       if (_.isEqual(userScore, score) && index < 10) {
         result = true;
       }
-   
     });
     if (result) {
       return sortedScores;
@@ -73,7 +70,7 @@ const Utils = (scene) => {
     getHighScores,
     verifyHighScore,
     insertHighScoreToDB,
-    setScale
+    setScale,
 
   };
 };
