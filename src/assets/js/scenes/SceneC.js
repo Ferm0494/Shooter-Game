@@ -20,15 +20,14 @@ class SceneC extends Phaser.Scene {
     this.background = this.utils.scaleBackground();
     this.highScore().then(component => {
       let deltaY = 0;
-      component.forEach((score,index) => {
+      component.forEach((score, index) => {
         deltaY += 40;
-       this.loop = this.add.text(this.centerX - 150, deltaY, score, this.utils.style);
-        if(index === 1){
-            this.loop.setInteractive().on('pointerdown',()=>{
-                this.scene.start('SceneB');
-            })
+        this.loop = this.add.text(this.centerX - 150, deltaY, score, this.utils.style);
+        if (index === 1) {
+          this.loop.setInteractive().on('pointerdown', () => {
+            this.scene.start('SceneB');
+          });
         }
-       
       });
     });
   }
@@ -36,13 +35,10 @@ class SceneC extends Phaser.Scene {
   async highScore() {
     const { result } = await this.utils.getHighScores();
     const sortedScores = result.sort((a, b) => a.score - b.score);
-    const scores = sortedScores.reverse().map((score,index) => {
-      
-      return `${index}.   ${score.user}    ${parseFloat(score.score)} `;
-    });
+    const scores = sortedScores.reverse().map((score, index) => `${index}.   ${score.user}    ${parseFloat(score.score)} `);
     const intro = 'Top 10 scores';
-    const intro2 = 'Play now!'
-    const component = [intro,intro2];
+    const intro2 = 'Play now!';
+    const component = [intro, intro2];
     scores.forEach(s => component.push(s));
     return component;
   }
