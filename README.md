@@ -3,7 +3,7 @@
 
 ![Demo Doccou alpha](https://j.gifs.com/K1DQ3M.gif)
 
-In this project we used `Phaser3` to make the game on a canvas with **ES6**: Check the live demo right here ![Live demo](https://lucid-tesla-7f100b.netlify.app/)
+In this project we used `Phaser3` to make the game on a canvas with **ES6**: Check the live demo right here [Live demo](https://lucid-tesla-7f100b.netlify.app/)
 ## Built with
 
 - Javascript(ES6)
