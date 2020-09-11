@@ -77,7 +77,7 @@ class SceneB extends Phaser.Scene {
 
 
   setScore() {
-    this.scoreText = this.add.text(16, 16, `SCORE: ${this.score}`, { fontSize: '32px', fill: '#ffff' });
+    this.scoreText = this.add.text(16, 16, 'SCORE: 0', { fontSize: '32px', fill: '#ffff' });
     this.scoreText.depth = 100;
   }
 
@@ -170,12 +170,14 @@ class SceneB extends Phaser.Scene {
           this.util.getHighScores().then(({ result }) => {
             const res = this.util.verifyHighScore(scored, result);
             if (!res) {
-              this.finalScore.list[0].setText(`${this.name} scored :${this.score}`);
+              this.finalScore.list[0].setText(`${scored.user} scored :${scored.score}`);
             } else {
-              this.finalScore.list[0].setText(`${this.name} NEW RECORD :${this.score}`);
+              this.finalScore.list[0].setText(`${scored.user} NEW RECORD :${scored.score}`);
               this.util.insertHighScoreToDB(scored).then(x => x);
             }
             this.physics.pause();
+            this.score = 0;
+            this.setScore();
             this.finalScore.setVisible(true);
           });
         }

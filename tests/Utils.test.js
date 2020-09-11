@@ -2,7 +2,7 @@ import Utils from '../src/assets/js/config/Utils';
 import 'regenerator-runtime/runtime';
 import getHighScores from './mocks';
 
-const URL = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/MF1UR5YnUQdoeRyy75lE/scores';
+const URL = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/BRrFry7M0nKbOPlfYxsascores';
 const result = [{ user: 'Fernando', score: 40 }, { user: 'Fernando2', score: 50 }, { user: 'Fernando3', score: 10 }, { user: 'Fernando4', score: 5 }, { user: 'Maria', score: 200 }];
 const util = Utils();
 

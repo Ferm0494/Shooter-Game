@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-const API = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/MF1UR5YnUQdoeRyy75lE/scores';
+const API = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/BRrFry7M0nKbOPlfYxsa/scores';
 const Utils = (scene) => {
   const centerScene = () => {
     const centerX = scene.cameras.main.worldView.x + scene.cameras.main.width / 2;
