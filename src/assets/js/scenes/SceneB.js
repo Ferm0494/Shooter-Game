@@ -176,8 +176,6 @@ class SceneB extends Phaser.Scene {
               this.util.insertHighScoreToDB(scored).then(x => x);
             }
             this.physics.pause();
-            this.score = 0;
-            this.setScore();
             this.finalScore.setVisible(true);
           });
         }
