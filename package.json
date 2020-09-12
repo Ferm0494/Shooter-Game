@@ -6,7 +6,8 @@
     "scripts": {
         "watchtest": "jest --watch",
         "watch": "webpack --watch",
-        "build": "webpack"
+        "build": "webpack",
+        "start": "webpack"
     },
     "author": "",
     "license": "ISC",
