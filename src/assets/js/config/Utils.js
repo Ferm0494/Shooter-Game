@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-const API = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/BRrFry7M0nKbOPlfYxsa/scores';
+const API = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/M4KUcViYTludXZAhuOi0/scores';
 const Utils = (scene) => {
   const centerScene = () => {
     const centerX = scene.cameras.main.worldView.x + scene.cameras.main.width / 2;
@@ -31,17 +31,17 @@ const Utils = (scene) => {
   const verifyHighScore = (userScore, scores) => {
     scores.push(userScore);
     const sortedScores = scores.sort((a, b) => a.score - b.score).reverse();
-    if (scores.length <= 10) {
+    if (scores.length < 3) {
       return sortedScores;
     }
     let result = false;
     sortedScores.forEach((score, index) => {
-      if (_.isEqual(userScore, score) && index < 10) {
+      if (_.isEqual(userScore, score) && index < 3) {
         result = true;
       }
     });
     if (result) {
-      return sortedScores;
+      return sortedScores.splice(0,3);
     }
     return result;
   };
