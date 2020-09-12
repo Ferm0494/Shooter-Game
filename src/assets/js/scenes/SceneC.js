@@ -33,9 +33,9 @@ class SceneC extends Phaser.Scene {
   }
 
   async highScore() {
-    const { result } = await this.utils.getHighScores();
-    const sortedScores = result.sort((a, b) => a.score - b.score).splice(0, 3);
-    const scores = sortedScores.reverse().map((score, index) => `${index + 1}.   ${score.user}    ${parseFloat(score.score)} `);
+    const result  = await this.utils.getHighScores();
+    const sortedScores = result.sort((a, b) => a.score - b.score).reverse().splice(0,3)
+    const scores = sortedScores.map((score, index) => `${index + 1}.   ${score.user}    ${parseFloat(score.score)} `);
     const intro = 'Top 3 Scores';
     const intro2 = 'Play now!';
     const component = [intro, intro2];

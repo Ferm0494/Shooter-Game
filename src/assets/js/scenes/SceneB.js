@@ -167,7 +167,7 @@ class SceneB extends Phaser.Scene {
             user: this.name,
             score: this.score,
           };
-          this.util.getHighScores().then(({ result }) => {
+          this.util.getHighScores().then(( result ) => {
             const res = this.util.verifyHighScore(scored, result);
             if (!res) {
               this.finalScore.list[0].setText(`${scored.user} scored :${scored.score}`);

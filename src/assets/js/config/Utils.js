@@ -59,7 +59,7 @@ const Utils = (scene) => {
   const getHighScores = async () => {
     const response = await fetch(API);
     const json = await response.json();
-    return json;
+    return json.result
   };
 
   const style = { fontSize: `${setScale(32)}px`, fill: '#ffff' };
