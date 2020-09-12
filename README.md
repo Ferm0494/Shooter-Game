@@ -11,6 +11,7 @@ In this project we used `Phaser3` to make the game on a canvas with **ES6**: Che
 - Webpack
 - Jest
 
+
 ## Getting Started:
 
 To get a local copy up and running follow these simple example steps:
@@ -24,7 +25,23 @@ To get a local copy up and running follow these simple example steps:
 
 4. Install dependencies with `npm install`
 
+5. Start the server with `npm run build`
+
 5. Run the **tests** with `npm run watchtest`
+
+## How to play the game:
+
+1. Enter a username.
+
+2. Click **play now**.
+
+3. Dont let the aliens pass through ,so shoot at them with **space**.
+
+4. Move your player with **left** and **right**.
+
+5. Make sure to get the **coins** for more **score**!
+
+6. The game ends when the player has no lifes and a alien pass!
 
 ## Show your support
 

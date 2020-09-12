@@ -9,10 +9,10 @@ const result = [{ user: 'Fernando2', score: 50 }, { user: 'Fernando3', score: 10
 
 test('score should be inserted if the result is less than 3', async () => {
   const userScore = { user: 'Test', score: 500 };
-  const newScores = util.verifyHighScore(userScore, result.slice(0,2));
-  let resultAux = result.slice(0,2)
+  const newScores = util.verifyHighScore(userScore, result.slice(0, 2));
+  let resultAux = result.slice(0, 2);
   resultAux.push(userScore);
-  resultAux = resultAux.sort((a, b) => a.score - b.score).reverse()
+  resultAux = resultAux.sort((a, b) => a.score - b.score).reverse();
 
   expect(resultAux).toEqual(newScores);
 });
@@ -24,11 +24,10 @@ test('score should not be inserted if it less than other scores', () => {
 });
 
 test('score should be inserted if its bigger than at least the 3rd position. ', () => {
-  let resultAux  = result;
   const newScore = { user: 'Test2', score: 5000 };
   const newScores = util.verifyHighScore(newScore, result);
-  expect(newScores).not.toBe(false)
-})
+  expect(newScores).not.toBe(false);
+});
 test('Mock to get HighScores if url is valid', () => {
   getHighScores(URL).then(response => {
     expect(response).toEqual(result);

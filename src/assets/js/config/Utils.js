@@ -41,7 +41,7 @@ const Utils = (scene) => {
       }
     });
     if (result) {
-      return sortedScores.splice(0,3);
+      return sortedScores.splice(0, 3);
     }
     return result;
   };
@@ -59,7 +59,7 @@ const Utils = (scene) => {
   const getHighScores = async () => {
     const response = await fetch(API);
     const json = await response.json();
-    return json.result
+    return json.result;
   };
 
   const style = { fontSize: `${setScale(32)}px`, fill: '#ffff' };
