@@ -29,7 +29,7 @@ class SceneA extends Phaser.Scene {
 
   createMenu() {
     const { centerX, centerY } = this.utils.centerScene();
-    const intro = this.add.text(0, 0, `Welcome : ${this.name} `, this.utils.style);
+    const intro = this.add.text(75, 0, `Welcome : ${this.name} `, this.utils.style);
     const play = this.add.text(75, 75, 'Start Game', this.utils.style);
     play.setInteractive().on('pointerdown', () => {
       this.scene.start('SceneB');
@@ -38,7 +38,12 @@ class SceneA extends Phaser.Scene {
     scores.setInteractive().on('pointerdown', () => {
       this.scene.start('SceneC');
     });
-    const container = this.add.container(centerX - 150, centerY, [intro, play, scores]);
+
+    const exit = this.add.text(75,175,"Exit",this.utils.style)
+    exit.setInteractive().on('pointerdown',()=>{
+      window.location.reload();
+    })
+    const container = this.add.container(centerX - 150, centerY, [intro, play, scores,exit]);
     return container;
   }
 
