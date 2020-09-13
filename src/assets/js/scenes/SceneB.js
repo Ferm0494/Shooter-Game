@@ -58,7 +58,7 @@ class SceneB extends Phaser.Scene {
   componentScore() {
     const { centerX, centerY } = this.util.centerScene();
 
-    const score = this.add.text(0, 0, `${this.name} scored : ${this.score}`, this.util.style);
+    const score = this.add.text(75, 0, `${this.name} scored : ${this.score}`, this.util.style);
     const again = this.add.text(75, 75, 'Play Again?', this.util.style);
     const menu = this.add.text(125, 125, 'Menu', this.util.style);
 
@@ -163,6 +163,7 @@ class SceneB extends Phaser.Scene {
         if (this.player.alive()) {
           this.player.removeLife();
         } else {
+          this.player.removeLife();
           const scored = {
             user: this.name,
             score: this.score,
