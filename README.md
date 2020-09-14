@@ -4,6 +4,7 @@
 ![Demo Doccou alpha](https://j.gifs.com/K1DQ3M.gif)
 
 In this project we used `Phaser3` to make the game on a canvas with **ES6**: Check the live demo right here [Live demo](https://lucid-tesla-7f100b.netlify.app/)
+
 ## Built with
 
 - Javascript(ES6)
@@ -30,6 +31,11 @@ To get a local copy up and running follow these simple example steps:
 ## Test the game:
 
 1. Run the **tests** with `npm run watchtest`
+
+## GDD(Game Driven Development):
+
+- In this project you need to score the max you can kill more enemies or prefer to get the coins, more enemies appear when the score is increasing so dont let the aliens pass while you have lives! Best scores will be displayed at the **Score Board** so try your best!
+
 
 ## How to play the game:
 
