@@ -27,7 +27,9 @@ To get a local copy up and running follow these simple example steps:
 
 5. Start the server with `npm run build`
 
-5. Run the **tests** with `npm run watchtest`
+## Test the game:
+
+1. Run the **tests** with `npm run watchtest`
 
 ## How to play the game:
 
