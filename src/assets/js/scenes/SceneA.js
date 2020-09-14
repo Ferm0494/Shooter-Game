@@ -1,7 +1,6 @@
 
 import Phaser from 'phaser';
 import space from '../../img/space3.png';
-import player from '../../img/gamer.png';
 import Utils from '../config/Utils';
 
 class SceneA extends Phaser.Scene {
@@ -19,7 +18,6 @@ class SceneA extends Phaser.Scene {
 
   preload() {
     this.load.image('space', space);
-    this.load.image('player', player);
   }
 
   create() {

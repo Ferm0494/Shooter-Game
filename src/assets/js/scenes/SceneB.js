@@ -4,6 +4,7 @@ import alien from '../../img/alien1.png';
 import laser from '../../img/beam2.png';
 import life from '../../img/life.png';
 import coin from '../../img/gold.png';
+import player from '../../img/player.png';
 import explosion from '../../img/explosion.png';
 import LaserGroup from '../gameObjects/LaserGroup';
 import AlienGroup from '../gameObjects/AlienGroup';
@@ -11,6 +12,7 @@ import particleConfig from '../config/particleConfig';
 import Player from '../gameObjects/Player';
 import Utils from '../config/Utils';
 import CoinGroup from '../gameObjects/CoinGroup';
+
 
 
 class SceneB extends Phaser.Scene {
@@ -30,6 +32,7 @@ class SceneB extends Phaser.Scene {
   }
 
   preload() {
+    this.load.image('player', player);
     this.load.image('coin', coin);
     this.load.image('explosion', explosion);
     this.load.image('alien1', alien);
