@@ -25,7 +25,7 @@ To get a local copy up and running follow these simple example steps:
 
 4. Install dependencies with `npm install`
 
-5. Start the server with `npm run build`
+5. Start the server with `npm run start`
 
 ## Test the game:
 

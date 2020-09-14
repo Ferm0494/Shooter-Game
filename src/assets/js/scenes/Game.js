@@ -177,11 +177,11 @@ class Game extends Phaser.Scene {
               this.finalScore.list[0].setText(`${scored.user} scored :${scored.score}`);
             } else {
               this.finalScore.list[0].setText(`${scored.user} NEW RECORD :${scored.score}`);
-              this.util.insertHighScoreToDB(scored).then(x => x);
+              this.util.insertHighScoreToDB(scored).then(x => x).catch(e=>e);
             }
             this.physics.pause();
             this.finalScore.setVisible(true);
-          });
+          }).catch(e=>e);
         }
       }
     });
