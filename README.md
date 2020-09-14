@@ -34,7 +34,7 @@ To get a local copy up and running follow these simple example steps:
 
 ## GDD(Game Driven Development):
 
-- In this project you need to score the max you can kill more enemies or prefer to get the coins, more enemies appear when the score is increasing so dont let the aliens pass while you have lives! Best scores will be displayed at the **Score Board** so try your best!
+- In this game, you need to score the max you can, you can  kill more enemies for slow score or prefer to get the coins for bonus score, more enemies appear when the score is increasing so dont let the aliens pass while you have lives! If an **Alien** pass you will be substracted a life, you only have **3 lifes**, so when lifes are over the **Game will be over**  so choose wisely! Best scores will be displayed at the **Score Board** so try your best!
 
 
 ## How to play the game:
