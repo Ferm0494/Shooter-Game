@@ -7,14 +7,15 @@
         "watchtest": "jest --watch",
         "watch": "webpack --watch",
         "build": "webpack",
-        "start": "webpack"
+        "start": "webpack-dev-server --open --mode development"
     },
     "author": "",
     "license": "ISC",
     "dependencies": {
         "lodash": "^4.17.20",
         "phaser": "^3.24.1",
-        "regenerator-runtime": "^0.13.7"
+        "regenerator-runtime": "^0.13.7",
+        "webpack-dev-server": "^3.11.0"
     },
     "devDependencies": {
         "@babel/core": "^7.11.6",
