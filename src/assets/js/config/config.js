@@ -1,7 +1,7 @@
 import Phaser from 'phaser';
-import SceneB from '../scenes/SceneB';
-import SceneA from '../scenes/SceneA';
-import SceneC from '../scenes/SceneC';
+import SceneB from '../scenes/Game';
+import SceneA from '../scenes/Menu';
+import SceneC from '../scenes/Scores';
 
 const config = {
   type: Phaser.AUTO,

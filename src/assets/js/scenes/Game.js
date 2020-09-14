@@ -4,7 +4,7 @@ import alien from '../../img/alien1.png';
 import laser from '../../img/beam2.png';
 import life from '../../img/life.png';
 import coin from '../../img/gold.png';
-import player from '../../img/player.png';
+import Gamer from '../../img/spaceship.png';
 import explosion from '../../img/explosion.png';
 import LaserGroup from '../gameObjects/LaserGroup';
 import AlienGroup from '../gameObjects/AlienGroup';
@@ -15,10 +15,10 @@ import CoinGroup from '../gameObjects/CoinGroup';
 
 
 
-class SceneB extends Phaser.Scene {
+class Game extends Phaser.Scene {
   constructor() {
     super({
-      key: 'SceneB',
+      key: 'Game',
       active: false,
     });
     this.util = Utils(this);
@@ -32,7 +32,7 @@ class SceneB extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image('player', player);
+    this.load.image('player', Gamer);
     this.load.image('coin', coin);
     this.load.image('explosion', explosion);
     this.load.image('alien1', alien);
@@ -66,11 +66,11 @@ class SceneB extends Phaser.Scene {
     const menu = this.add.text(125, 125, 'Menu', this.util.style);
 
     again.setInteractive().on('pointerdown', () => {
-      this.scene.start('SceneB');
+      this.scene.start('Game');
     });
 
     menu.setInteractive().on('pointerdown', () => {
-      this.scene.start('SceneA');
+      this.scene.start('Menu');
     });
 
     const container = this.add.container(centerX - 150, centerY, [score, again, menu]);
@@ -203,4 +203,4 @@ class SceneB extends Phaser.Scene {
   }
 }
 
-export default SceneB;
+export default Game;

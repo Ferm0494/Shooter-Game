@@ -3,11 +3,11 @@ import Phaser from 'phaser';
 import space from '../../img/space3.png';
 import Utils from '../config/Utils';
 
-class SceneA extends Phaser.Scene {
+class Menu extends Phaser.Scene {
   constructor() {
     super({
-      key: 'SceneA',
-      active: true,
+      key: 'Menu',
+      active: false,
     });
     this.utils = Utils(this);
   }
@@ -30,11 +30,11 @@ class SceneA extends Phaser.Scene {
     const intro = this.add.text(75, 0, `Welcome : ${this.name} `, this.utils.style);
     const play = this.add.text(75, 75, 'Start Game', this.utils.style);
     play.setInteractive().on('pointerdown', () => {
-      this.scene.start('SceneB');
+      this.scene.start('Game');
     });
     const scores = this.add.text(75, 125, 'Highscores', this.utils.style);
     scores.setInteractive().on('pointerdown', () => {
-      this.scene.start('SceneC');
+      this.scene.start('Scores');
     });
 
     const exit = this.add.text(75,175,"Exit",this.utils.style)
@@ -50,4 +50,4 @@ class SceneA extends Phaser.Scene {
   }
 }
 
-export default SceneA;
+export default Menu;

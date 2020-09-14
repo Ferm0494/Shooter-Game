@@ -1,10 +1,10 @@
 import Phaser from 'phaser';
 import Utils from '../config/Utils';
 
-class SceneC extends Phaser.Scene {
+class Scores extends Phaser.Scene {
   constructor() {
     super({
-      key: 'SceneC',
+      key: 'Scores',
     });
     this.utils = Utils(this);
     this.rendered = false;
@@ -25,7 +25,7 @@ class SceneC extends Phaser.Scene {
         this.loop = this.add.text(this.centerX - 150, deltaY, score, this.utils.style);
         if (index === 1) {
           this.loop.setInteractive().on('pointerdown', () => {
-            this.scene.start('SceneB');
+            this.scene.start('Game');
           });
         }
       });
@@ -48,4 +48,4 @@ class SceneC extends Phaser.Scene {
   }
 }
 
-export default SceneC;
+export default Scores;
