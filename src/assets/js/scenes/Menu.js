@@ -37,11 +37,11 @@ class Menu extends Phaser.Scene {
       this.scene.start('Scores');
     });
 
-    const exit = this.add.text(75,175,"Exit",this.utils.style)
-    exit.setInteractive().on('pointerdown',()=>{
+    const exit = this.add.text(75, 175, 'Exit', this.utils.style);
+    exit.setInteractive().on('pointerdown', () => {
       window.location.reload();
-    })
-    const container = this.add.container(centerX - 150, centerY, [intro, play, scores,exit]);
+    });
+    const container = this.add.container(centerX - 150, centerY, [intro, play, scores, exit]);
     return container;
   }
 

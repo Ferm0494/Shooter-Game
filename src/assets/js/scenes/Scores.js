@@ -29,7 +29,7 @@ class Scores extends Phaser.Scene {
           });
         }
       });
-    }).catch(e=> e);
+    }).catch(e => e);
   }
 
   async highScore() {
